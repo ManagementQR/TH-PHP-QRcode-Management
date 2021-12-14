@@ -50,11 +50,26 @@
             </div>
           </form>
           <form action="{{URL::to('/signup')}}" method="POST" class="sign-up-form">
+            {{ csrf_field() }}
             <h2 class="title">Đăng ký tài khoản</h2>
+            <?php 
+              $message = Session::get('message');
+              if($message){
+                echo '<span class="text-alert">'.$message.'</span>';
+                Session::put('message',null);
+              }
+              $error = Session::get('error');
+              if($error){
+                echo '<span class="text-alert">'.$error.'</span>';
+                //Session::put('error',null);
+              }
+            ?>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" name="username_register" placeholder="Username" />
             </div>
+            <span class="error-messages">{{$errors->first('username')}}</span>
+
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" name="fullname" placeholder="Fullname" />
