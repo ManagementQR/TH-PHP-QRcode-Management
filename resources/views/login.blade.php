@@ -14,15 +14,23 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
-            <h2 class="title">Đăng Nhập</h2>
+          <form action="{{URL::to('/client-dashboard')}}" method="POST" class="sign-in-form">
+            {{ csrf_field() }}
+            <h2 class="title" >Đăng Nhập</h2>
+            <?php 
+              $message = Session::get('message');
+              if($message){
+                echo '<span class="text-alert" style="color: red">'.$message.'</span>';
+                Session::put('message',null);
+              }
+            ?>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" name="username" placeholder="Username" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" name="password" placeholder="Password" />
             </div>
             <input type="submit" value="Đăng Nhập" class="btn solid" />
             <p class="social-text">Hoặc đăng nhập bằng các nền tảng mạng xã hội</p>
@@ -41,24 +49,29 @@
               </a>
             </div>
           </form>
-          <form action="#" class="sign-up-form">
+          <form action="{{URL::to('/signup')}}" method="POST" class="sign-up-form">
             <h2 class="title">Đăng ký tài khoản</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" name="username_register" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="fullname" placeholder="Fullname" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" name="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" name="password_register" placeholder="Password" />
             </div>
             <div class="input-field">
-              <i class="fas fa-place-of-worship"></i>
-              <input type="text" placeholder="Position" />
+              <i class="fas fa-lock"></i>
+              <input type="password" name="confirm_password" placeholder="Confirm Password" />
             </div>
+            
             <input type="submit" class="btn" value="Đăng ký" />
             <p class="social-text">Hoặc Đăng ký tài khoản với các nền tảng mạng xã hội</p>
             <div class="social-media">

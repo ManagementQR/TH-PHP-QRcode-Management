@@ -25,8 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('qrCodeImg');
             $table->string('phoneNumber');
             $table->string('email');
+            $table->string('idRole');
 
             $table->primary('username');
+            $table->foreign('idRole')->references('id')->on('roles');
             $table->timestamps();
         });
     }

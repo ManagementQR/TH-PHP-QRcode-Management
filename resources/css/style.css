@@ -11,6 +11,7 @@ input {
   font-family: "Poppins", sans-serif;
 }
 
+
 .container {
   position: relative;
   width: 100%;
@@ -371,7 +372,9 @@ form.sign-in-form {
     top: 5%;
     transform: translate(-50%, 0);
   }
+
 }
+
 
 @media (max-width: 570px) {
   form {
@@ -397,4 +400,6 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
+
+  
 }
