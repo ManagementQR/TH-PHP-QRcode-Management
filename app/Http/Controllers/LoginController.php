@@ -27,13 +27,35 @@ class LoginController extends Controller
 
     public function signup(Request $request)
     {
-        // $data = $request->all();
-        // $brand = new Brand();
-        // $brand->username = $data['username_register'];
-        // $brand->password = $data['password_register'];
-        // $brand->fullname = $data['fullname'];
-        // $brand->email = $data['email'];
-        // $brand->save();
+        $messages = [
+            'username.required' => 'Tài khoản bắt buộc nhập',
+            'fullname.required' => 'Tên bắt buộc nhập',
+            'password.required' => 'Mật khẩu bắt buộc nhập',
+            'email.required' => 'Email bắt buộc nhập',
+            'confirm_password.required' => 'mật khẩu xác nhận lại bắt buộc nhập',
+        ];
+        $this->validate($request,[
+            'username'=>'required',
+            'password'=>'required',
+            'fullname'=>'required',
+            'email'=>'required',
+            'confirm_password'=>'required'
+        ], $messages);
 
+        $errors = $validate->errors();
+        $data = array();
+        $data['username'] = $request->username_register;
+        $data['password'] = $request->password_register;
+        $data['fullname'] = $request->fullname;
+        $data['email'] = $request->email;
+        $data['gender'] = 0;
+        $data['idRole'] = 'KH';
+        if($data['password']!=$request->confirm_password){
+            Session::put('error','Xác nhận mật khẩu không đúng!');
+            return redirect('/login');
+        }
+        DB::table('users')->insert($data);
+        Session::put('message','Đăng ký thành công. Mời đăng nhập!');
+        return redirect('/login');
     }
 }

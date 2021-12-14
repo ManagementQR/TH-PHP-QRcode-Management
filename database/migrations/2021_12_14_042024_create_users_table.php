@@ -18,12 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('fullname');
-            $table->integer('gender');
-            $table->string('address');
-            $table->datetime('dateOfBirth');
-            $table->string('avatarImg');
-            $table->string('qrCodeImg');
-            $table->string('phoneNumber');
+            $table->integer('gender')->nullable();
+            $table->string('address')->nullable();
+            $table->datetime('dateOfBirth')->nullable();
+            $table->string('avatarImg')->nullable();
+            $table->string('qrCodeImg')->nullable();
+            $table->string('phoneNumber')->nullable();
             $table->string('email');
             $table->string('idRole');
 
