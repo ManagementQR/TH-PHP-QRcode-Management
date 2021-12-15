@@ -19,6 +19,8 @@ class LoginController extends Controller
         $password = $request->password;
         $rs = DB::table('users')->where('username',$username)->where('password',$password)->first();
         if($rs){
+            Session::put('username',$rs->username);
+            Session::put('fullname',$rs->fullname);
             return view('client-dashboard');
         }
         Session::put('message','Tài khoản hoặc mật khẩu không đúng!');
