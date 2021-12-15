@@ -1,140 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="../resources/css/style.css" />
-    <title>Sign in & Sign up</title>
-  </head>
-  <body>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
     <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form action="{{URL::to('/client-dashboard')}}" method="POST" class="sign-in-form">
-            {{ csrf_field() }}
-            <h2 class="title" >Đăng Nhập</h2>
-            <?php 
-              $message = Session::get('message');
-              if($message){
-                echo '<span class="text-alert" style="color: red">'.$message.'</span>';
-                Session::put('message',null);
-              }
-            ?>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" name="username" placeholder="Username" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" name="password" placeholder="Password" />
-            </div>
-            <input type="submit" value="Đăng Nhập" class="btn solid" />
-            <p class="social-text">Hoặc đăng nhập bằng các nền tảng mạng xã hội</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </form>
-          <form action="{{URL::to('/signup')}}" method="POST" class="sign-up-form">
-            {{ csrf_field() }}
-            <h2 class="title">Đăng ký tài khoản</h2>
-            <?php 
-              $message = Session::get('message');
-              if($message){
-                echo '<span class="text-alert">'.$message.'</span>';
-                Session::put('message',null);
-              }
-              $error = Session::get('error');
-              if($error){
-                echo '<span class="text-alert">'.$error.'</span>';
-                //Session::put('error',null);
-              }
-            ?>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" name="username_register" placeholder="Username" />
-            </div>
-            <span class="error-messages">{{$errors->first('username')}}</span>
 
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" name="fullname" placeholder="Fullname" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" name="email" placeholder="Email" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" name="password_register" placeholder="Password" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" name="confirm_password" placeholder="Confirm Password" />
-            </div>
-            
-            <input type="submit" class="btn" value="Đăng ký" />
-            <p class="social-text">Hoặc Đăng ký tài khoản với các nền tảng mạng xã hội</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
 
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
-            <h3>Tạo mới tài khoản!</h3>
-            <p>
-              Bạn chưa có tài khoản, hãy nhấn vào đăng ký ngay để sử dụng dịch vụ của chúng tôi.
-            </p>
-            <button class="btn transparent" id="sign-up-btn">
-              Đăng ký
-            </button>
-          </div>
-          <img src="../resources/img/log.svg" class="image" alt="" />
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user" action="{{URL::to('/client-dashboard')}}" method="POST">
+                                        {{ csrf_field() }}
+                                        <?php 
+                                        $message = Session::get('message');
+                                        if($message){
+                                            echo '<span class="text-alert" style="color: red">'.$message.'</span>';
+                                            Session::put('message',null);
+                                        }
+                                        ?>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="exampleInputEmail" 
+                                                name="username" placeholder="Enter Email Address...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                               name="password" id="exampleInputPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <input type="submit" value="Sumbit" class="btn btn-primary btn-user btn-block">
+                                        
+                                        <hr>
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        </a>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="register">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        <div class="panel right-panel">
-          <div class="content">
-            <h3>Bạn đã có tài khoản ?</h3>
-            <p>
-              Quay lại trang đăng nhập
-            </p>
-            <button class="btn transparent" id="sign-in-btn">
-              Sign in
-            </button>
-          </div>
-          <img src="../resources/img/register.svg" class="image" alt="" />
-        </div>
-      </div>
+
     </div>
 
-    <script src="../resources/js/appClient.js"></script>
-  </body>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../resources/vendor/jquery/jquery.min.js"></script>
+    <script src="../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../resources/js/sb-admin-2.min.js"></script>
+
+</body>
+
 </html>

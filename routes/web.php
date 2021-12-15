@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index');
 Route::post('/client-dashboard', 'LoginController@login');
 
-Route::post('/signup', 'LoginController@signup');
+Route::get('/register', 'LoginController@index_register');
+Route::post('/register', 'LoginController@register');
 
 

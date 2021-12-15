@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-    return view('login'); // trả về trang test.blade.php
+        return view('login'); 
     }
 
     public function login(Request $request)
@@ -25,17 +25,24 @@ class LoginController extends Controller
         return redirect('/login');
     }
 
-    public function signup(Request $request)
+    public function index_register()
+    {
+        return view('register'); 
+    }
+
+    public function register(Request $request)
     {
         $messages = [
             'username.required' => 'Tài khoản bắt buộc nhập',
+            'username.max:255' => 'Tài khoản phải ít hơn 255 kí tự',
+            'username.min:3' => 'Tài khoản phải nhiều hơn 3 kí tự',
             'fullname.required' => 'Tên bắt buộc nhập',
             'password.required' => 'Mật khẩu bắt buộc nhập',
             'email.required' => 'Email bắt buộc nhập',
             'confirm_password.required' => 'mật khẩu xác nhận lại bắt buộc nhập',
         ];
         $this->validate($request,[
-            'username'=>'required',
+            'username'=>'required|max:255|min:3',
             'password'=>'required',
             'fullname'=>'required',
             'email'=>'required',
@@ -50,12 +57,14 @@ class LoginController extends Controller
         $data['email'] = $request->email;
         $data['gender'] = 0;
         $data['idRole'] = 'KH';
-        if($data['password']!=$request->confirm_password){
-            Session::put('error','Xác nhận mật khẩu không đúng!');
-            return redirect('/login');
+        if($data['password']==$request->confirm_password){
+            DB::table('users')->insert($data);
+            Session::put('message','Đăng ký thành công. Mời đăng nhập!');
+            return view('/login');
         }
-        DB::table('users')->insert($data);
-        Session::put('message','Đăng ký thành công. Mời đăng nhập!');
-        return redirect('/login');
+
+        Session::put('message','Xác nhận mật khẩu không đúng!');
+        return redirect('/register');
+        
     }
 }
