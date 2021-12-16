@@ -21,7 +21,9 @@ class LoginController extends Controller
         if($rs){
             Session::put('username',$rs->username);
             Session::put('fullname',$rs->fullname);
-            return view('client-dashboard');
+
+            $rs_checkin = DB::table('checkin')->where('username',$username)->get();
+            return view('client-dashboard')->with('checkIn',$rs_checkin);
         }
         Session::put('message','Tài khoản hoặc mật khẩu không đúng!');
         return redirect('/login');

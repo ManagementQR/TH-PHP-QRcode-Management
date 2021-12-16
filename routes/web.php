@@ -23,6 +23,12 @@ Route::post('/client-dashboard', 'LoginController@login');
 Route::get('/register', 'LoginController@index_register');
 Route::post('/register', 'LoginController@register');
 
+Route::get('/addCheckIn/{user_name}', 'CheckInController@addCheckIn');
+
+Route::get('/quet_QR', function () {
+    return view('quet_QR');
+});
+
 
 
 

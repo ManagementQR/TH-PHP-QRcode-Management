@@ -163,10 +163,41 @@
 
                 <!-- Begin Page Content -->
                 @php
-                    $qrcode_username = Session::get('username');
+                    $user_name = Session::get('username');
+                    $qrcode_username = URL::to('/addCheckIn/'.$user_name);
                 @endphp
                 <p class="qrcode_style">{{QrCode::size(100)->generate($qrcode_username)}}</p>
             </div>
+            
+            <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Giờ vào</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Ngày</th>
+                                            <th>Giờ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($checkIn as $key => $ci)
+                                            <tr>
+                                                <td>{{date('d-m-Y', strtotime($ci->gioVao))}}</td>
+                                                <td>{{date('H:i:s', strtotime($ci->gioVao))}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+            
             <!-- End of Main Content -->
 
             
