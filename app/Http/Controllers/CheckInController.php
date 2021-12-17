@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DateTime;
 use DB;
+use App\checkIn;
 
 class CheckInController extends Controller
 {
@@ -19,9 +20,22 @@ class CheckInController extends Controller
         
 
     }
+    
     public function showCheckIn($user_name)
     {
-        $rs = DB::table('checkin')->where('username',$user_name);
-        return view('');
+        $rs_checkin = checkIn::where('username',$user_name)->paginate(4);
+        return view('gioVao')->with('checkin',$rs_checkin);
+    }
+
+    public function search(Request $request){
+        $user = $request->username;
+        $key = $request->keyword;
+        if(empty($key)){
+            $rs_checkin = checkIn::where('username',$user)->paginate(4);
+        }
+        else{
+            $rs_checkin = checkIn::where('username',$user)->whereDate('gioVao',date('Y-m-d', strtotime($key)))->paginate(4);
+        }
+        return view('gioVao')->with('checkin',$rs_checkin);
     }
 }

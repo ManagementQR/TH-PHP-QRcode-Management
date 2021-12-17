@@ -18,6 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/login', 'LoginController@index');
+Route::get('/client-dashboard', function () {
+    return view('client-dashboard');
+});
+Route::get('/gioVao/{user_name}', 'CheckInController@showCheckIn');
+Route::get('/search', 'CheckInController@search');
+
+
 Route::post('/client-dashboard', 'LoginController@login');
 
 Route::get('/register', 'LoginController@index_register');

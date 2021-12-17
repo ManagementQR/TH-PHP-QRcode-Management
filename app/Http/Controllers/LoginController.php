@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
-
+use App\checkIn;
 class LoginController extends Controller
 {
     public function index()
@@ -22,12 +22,14 @@ class LoginController extends Controller
             Session::put('username',$rs->username);
             Session::put('fullname',$rs->fullname);
 
-            $rs_checkin = DB::table('checkin')->where('username',$username)->get();
-            return view('client-dashboard')->with('checkIn',$rs_checkin);
+            
+            return view('client-dashboard');//->with('checkin',$rs_checkin);
         }
         Session::put('message','Tài khoản hoặc mật khẩu không đúng!');
         return redirect('/login');
     }
+
+    
 
     public function index_register()
     {
