@@ -50,12 +50,12 @@
                     <span>Trang chủ</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="gioVao/{{Session::get('username')}}">
+                <a class="nav-link" href="{{URL::to('/gioVao/'.Session::get('username'))}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Giờ vào</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="gioVao/{{Session::get('username')}}">
+                <a class="nav-link" href="{{URL::to('/gioRa/'.Session::get('username'))}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Giờ ra</span></a>
             </li>

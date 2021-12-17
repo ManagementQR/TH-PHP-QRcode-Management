@@ -20,7 +20,6 @@
             <div class="row">
                 <div class="col-sm-12 col-md-8">
                     <div id="dataTable_length" class="dataTables_lenght">
-                        <label>hello</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
