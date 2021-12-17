@@ -1,4 +1,4 @@
-<script src="../resources/js/html5-qrcode.min.js"></script>
+<script src="{{asset('frontend/js/html5-qrcode.min.js')}}"></script>
 <style>
   .result{
     background-color: green;
