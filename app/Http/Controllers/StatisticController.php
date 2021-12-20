@@ -21,18 +21,16 @@ class StatisticController extends Controller
     }
 
     public function work_days_month(Request $request){
-       $date_start = $request->date_start;
-       $date_end = $request->date_end;
-
-       $all_checkin = DB::table('checkin')->get();
-       $data = array();
-
-
-       if (!isset($date_start) || !isset($date_end)){
+       /*if (!isset($date_start) || !isset($date_end)){
            Session::put('message','Ngày bắt đầu và ngày kết thúc không để trống.');
-       }
+       }*/
 
-        $all_user = DB::table('checkin')->where(DB::raw("DATE_FORMAT(gioVao, '%m-%d-%Y')"),$date_start)->get();
+        $fromDate = "2021-12-20";
+        $toDate   = "2021-12-25";
+
+        $all_user = DB::table('checkin')->where(DB::raw(
+            "(gioVao >= ? AND gioVao <= ?)"),
+            [$fromDate." 00:00:00", $toDate." 23:59:59"])->get();
 
         return view('admin.statistic.work_days_month')->with('all_user',$all_user);
     }
